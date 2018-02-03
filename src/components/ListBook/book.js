@@ -1,11 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class Book extends React.Component {
+  static propTypes = {
+    bookImageUrl: PropTypes.string.isRequired,
+    bookTitle: PropTypes.string.isRequired,
+    bookAuthor: PropTypes.string.isRequired,
+  }
+
   render() {
+    const { bookImageUrl, bookTitle, bookAuthor } = this.props
+
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: 'url("http://books.google.com/books/content?id=32haAAAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72yckZ5f5bDFVIf7BGPbjA0KYYtlQ__nWB-hI_YZmZ-fScYwFy4O_fWOcPwf-pgv3pPQNJP_sT5J_xOUciD8WaKmevh1rUR-1jk7g1aCD_KeJaOpjVu0cm_11BBIUXdxbFkVMdi&source=gbs_api")' }}></div>
+          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: bookImageUrl }}></div>
           <div className="book-shelf-changer">
             <select>
               <option value="none" disabled>Move to...</option>
@@ -16,8 +25,8 @@ class Book extends React.Component {
             </select>
           </div>
         </div>
-        <div className="book-title">The Adventures of Tom Sawyer</div>
-        <div className="book-authors">Mark Twain</div>
+        <div className="book-title">{bookTitle}</div>
+        <div className="book-authors">{bookAuthor}</div>
       </div>
     )
   }
